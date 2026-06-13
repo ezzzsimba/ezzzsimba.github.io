@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tom D. — About</title>
+  <meta name="description" content="About Tom D., graphic designer specializing in esports content and Rocket League decals." />
+
+  <!-- ========================
+       FONTS
+  ======================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ========================
+       VARIABLES — modifie ici
+    ======================== */
+    :root {
+      --bg:          #0a0a0a;
+      --surface:     #111111;
+      --border:      rgba(255,255,255,0.08);
+      --accent:      #e8ff47;
+      --accent2:     #ff4747;
+      --text:        #f0f0f0;
+      --muted:       #888888;
+      --font-display: 'Syne', sans-serif;
+      --font-body:    'DM Sans', sans-serif;
+      --nav-height:  64px;
+    }
+
+    /* ========================
+       RESET & BASE
+    ======================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ========================
+       NAVBAR
+    ======================== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--text); }
+
+    /* ========================
+       PAGE HEADER
+    ======================== */
+    .page-header {
+      position: relative;
+      overflow: hidden;
+      padding: calc(var(--nav-height) + 80px) 40px 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-header-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url("https://framerusercontent.com/images/4t5alPOduRzuLL3Kh65OAiejsc.jpg");
+      background-size: cover;
+      background-position: center;
+      opacity: 0.07;
+      z-index: 0;
+    }
+    .page-header-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, var(--bg) 100%);
+    }
+    .page-header-label,
+    .page-header-title {
+      position: relative;
+      z-index: 1;
+    }
+    .page-header-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      animation: fadeUp 0.5s ease both;
+    }
+    .page-header-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 8vw, 6rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      animation: fadeUp 0.5s 0.1s ease both;
+    }
+
+    /* ========================
+       ABOUT LAYOUT
+    ======================== */
+    .about-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      align-items: start;
+    }
+
+    /* Colonne gauche : photo */
+    .about-photo {
+      position: relative;
+      background: var(--bg);
+      overflow: hidden;
+      border-right: 1px solid var(--border);
+      max-height: 480px;
+    }
+    .about-photo img {
+      width: 100%;
+      height: 100%;
+      max-height: 480px;
+      object-fit: cover;
+      object-position: top center;
+      opacity: 0.85;
+      animation: fadeIn 0.8s 0.2s ease both;
+    }
+    /* Placeholder si pas d'image */
+    .about-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* Colonne droite : texte */
+    .about-content {
+      padding: 60px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 32px;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .about-heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .about-heading span { color: var(--accent); }
+
+    .about-text {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 460px;
+    }
+
+    /* Stats rapides */
+    .about-stats {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .stat-item {}
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* ========================
+       CV BUTTON
+    ======================== */
+    .cv-section {
+      padding: 80px 40px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 32px;
+    }
+    .cv-label-group {}
+    .cv-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .cv-heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 32px;
+      border-radius: 6px;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+    }
+    .btn-primary:hover {
+      background: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(232,255,71,0.2);
+    }
+    /* Icône flèche SVG inline */
+    .btn-icon {
+      width: 16px; height: 16px;
+      fill: currentColor;
+    }
+
+    /* ========================
+       SKILLS / SERVICES
+    ======================== */
+    .skills-section {
+      padding: 80px 40px;
+      border-top: 1px solid var(--border);
+    }
+    .skills-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .skills-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 40px;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+    @media (max-width: 900px) {
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 500px) {
+      .skills-grid { grid-template-columns: 1fr; }
+    }
+    .skill-card {
+      background: var(--bg);
+      padding: 32px 28px;
+      transition: background 0.2s;
+    }
+    .skill-card:hover { background: #161616; }
+    .skill-icon {
+      font-size: 1.6rem;
+      margin-bottom: 16px;
+    }
+    .skill-name {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .skill-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ========================
+       FOOTER
+    ======================== */
+    footer {
+      padding: 60px 40px 40px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+    .footer-logo span { color: var(--accent); }
+    .social-links {
+      display: flex;
+      gap: 20px;
+    }
+    .social-links a {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .social-links a:hover { color: var(--accent); }
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* ========================
+       ANIMATIONS
+    ======================== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 0.85; }
+    }
+
+    /* ========================
+       RESPONSIVE
+    ======================== */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { gap: 16px; }
+      .page-header { padding: calc(var(--nav-height) + 40px) 20px 30px; }
+      .about-section { grid-template-columns: 1fr; }
+      .about-photo { min-height: 300px; border-right: none; border-bottom: 1px solid var(--border); }
+      .about-content { padding: 40px 20px; }
+      .cv-section { padding: 60px 20px; }
+      .skills-section { padding: 60px 20px; }
+      footer { padding: 40px 20px 30px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ======================== NAVBAR ======================== -->
+  <nav>
+    <a href="index.html" class="nav-logo">Tom<span>D.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ======================== PAGE HEADER ======================== -->
+  <header class="page-header">
+    <div class="page-header-bg"></div>
+    <p class="page-header-label">Who am I</p>
+    <h1 class="page-header-title">About me</h1>
+  </header>
+
+  <!-- ======================== ABOUT CONTENT ======================== -->
+  <div class="about-section">
+
+    <!-- Colonne image : remplace src="" par ton image de profil -->
+    <div class="about-photo">
+      <img
+        src="https://framerusercontent.com/images/jtdSPYeyHBCozoj97JGUoJuOoI.png"
+        alt="Photo de Tom D."
+      />
+      <!--
+        Si tu n'as pas d'image, supprime le <img> ci-dessus
+        et décommente le bloc ci-dessous :
+      -->
+      <!--
+      <div class="about-photo-placeholder">Photo à venir</div>
+      -->
+    </div>
+
+    <!-- Colonne texte -->
+    <div class="about-content">
+      <h2 class="about-heading">Hello, I'm <span>Tom D.</span></h2>
+
+      <!-- Modifie ce paragraphe librement -->
+      <p class="about-text">
+        I'm a 17-year-old passionate graphic designer who started my journey in 2019.
+        I specialize in creating logos, banners, and esports-related content, with a focus
+        on Rocket League decals. Dedicated and professional, I'm always ready to bring your
+        ideas to life!
+      </p>
+
+      <!-- Stats rapides — modifie les chiffres et labels -->
+      <div class="about-stats">
+        <div class="stat-item">
+          <div class="stat-number">6+</div>
+          <div class="stat-label">Years experience</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Projects done</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Client-focused</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ======================== CV DOWNLOAD ======================== -->
+  <div class="cv-section">
+    <div class="cv-label-group">
+      <p class="cv-eyebrow">My resume</p>
+      <h2 class="cv-heading">Want to know more?<br>Download my CV.</h2>
+    </div>
+
+    <!--
+      BOUTON CV
+      → Remplace href="#" par le lien direct vers ton PDF
+        Exemple : href="https://framerusercontent.com/assets/MHjiSiJ99mLlbsWZvikphsY9Ls.pdf"
+        Ou : href="cv-tom-d.pdf" si tu mets ton PDF dans le repo GitHub
+    -->
+    <a
+      href="https://framerusercontent.com/assets/MHjiSiJ99mLlbsWZvikphsY9Ls.pdf"
+      target="_blank"
+      rel="noopener"
+      class="btn btn-primary"
+      download
+    >
+      <svg class="btn-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 16l-5-5 1.41-1.41L11 13.17V4h2v9.17l2.59-2.58L17 11l-5 5zm-7 4v-2h14v2H5z"/>
+      </svg>
+      Download CV
+    </a>
+  </div>
+
+  <!-- ======================== SKILLS ======================== -->
+  <section class="skills-section">
+    <p class="skills-label">What I do</p>
+    <h2 class="skills-title">My services</h2>
+
+    <div class="skills-grid">
+      <!-- Ajoute / supprime / modifie des .skill-card librement -->
+
+      <div class="skill-card">
+        <div class="skill-icon">🎨</div>
+        <div class="skill-name">Logo Design</div>
+        <p class="skill-desc">Distinctive logos and visual identities built to stand out in competitive environments.</p>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">🏆</div>
+        <div class="skill-name">Esports Content</div>
+        <p class="skill-desc">Banners, thumbnails, team branding and overlay graphics tailored for competitive gaming.</p>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">🚀</div>
+        <div class="skill-name">Rocket League Decals</div>
+        <p class="skill-desc">Custom decal designs and car concepts with precision and attention to detail.</p>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">📐</div>
+        <div class="skill-name">Branding</div>
+        <p class="skill-desc">Cohesive visual systems that tell your story across all platforms.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer>
+    <a href="index.html" class="footer-logo">Tom<span>D.</span></a>
+
+    <div class="social-links">
+      <a href="https://x.com/TomD_Graph" target="_blank" rel="noopener">𝕏 Twitter</a>
+      <a href="https://discord.gg/fqp3uNJwzV" target="_blank" rel="noopener">Discord</a>
+      <a href="https://ko-fi.com/tomgraph" target="_blank" rel="noopener">Ko-fi</a>
+    </div>
+
+    <p class="footer-copy">© 2025 Tom D. — All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
