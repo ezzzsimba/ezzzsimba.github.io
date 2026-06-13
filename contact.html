@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Tom D.</title>
+  <meta name="description" content="Get in touch with Tom D. — Graphic Designer specializing in esports content and Rocket League decals." />
+
+  <!-- ========================
+       FONTS
+  ======================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ========================
+       VARIABLES — modifie ici
+    ======================== */
+    :root {
+      --bg:           #0a0a0a;
+      --surface:      #111111;
+      --border:       rgba(255,255,255,0.08);
+      --accent:       #e8ff47;
+      --accent2:      #ff4747;
+      --text:         #f0f0f0;
+      --muted:        #888888;
+      --font-display: 'Syne', sans-serif;
+      --font-body:    'DM Sans', sans-serif;
+      --nav-height:   64px;
+    }
+
+    /* ========================
+       RESET & BASE
+    ======================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ========================
+       NAVBAR
+    ======================== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--text); }
+
+    /* ========================
+       PAGE WRAPPER
+    ======================== */
+    .page {
+      min-height: 100vh;
+      padding-top: var(--nav-height);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ========================
+       CONTACT HERO
+    ======================== */
+    .contact-hero {
+      position: relative;
+      padding: 80px 40px 0;
+      overflow: hidden;
+    }
+    .contact-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url("https://framerusercontent.com/images/4t5alPOduRzuLL3Kh65OAiejsc.jpg");
+      background-size: cover;
+      background-position: center;
+      opacity: 0.07;
+      z-index: 0;
+    }
+    .contact-hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, var(--bg) 100%);
+    }
+    .contact-hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+    }
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      animation: fadeUp 0.6s ease both;
+    }
+    .contact-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      margin-bottom: 20px;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    .contact-title .accent { color: var(--accent); }
+    .contact-desc {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 420px;
+      line-height: 1.7;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    /* ========================
+       CONTACT LAYOUT
+    ======================== */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      padding: 60px 40px 100px;
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* ========================
+       FORM
+    ======================== */
+    .contact-form-wrap {
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+    .form-block-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-bottom: 28px;
+      color: var(--text);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-label {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--text);
+      transition: border-color 0.2s, background 0.2s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+    .form-input::placeholder,
+    .form-textarea::placeholder { color: #444; }
+    .form-input:focus,
+    .form-textarea:focus {
+      border-color: var(--accent);
+      background: #161616;
+    }
+    .form-textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    /* Submit button */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 6px;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+      width: 100%;
+      justify-content: center;
+    }
+    .btn-primary:hover {
+      background: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* ==============================
+       FORM SUCCESS / ERROR FEEDBACK
+    ============================== */
+    .form-status {
+      display: none;
+      margin-top: 16px;
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+    }
+    .form-status.success {
+      display: block;
+      background: rgba(232,255,71,0.1);
+      border: 1px solid rgba(232,255,71,0.3);
+      color: var(--accent);
+    }
+    .form-status.error {
+      display: block;
+      background: rgba(255,71,71,0.1);
+      border: 1px solid rgba(255,71,71,0.3);
+      color: var(--accent2);
+    }
+
+    /* ========================
+       DIVIDER
+    ======================== */
+    .divider-note {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 28px 0;
+      color: var(--muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .divider-note::before,
+    .divider-note::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ========================
+       CONTACT SIDEBAR
+    ======================== */
+    .contact-sidebar {
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+    .contact-channel {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 12px;
+      transition: border-color 0.2s, transform 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .contact-channel:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .channel-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: rgba(232,255,71,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .channel-body {}
+    .channel-name {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .channel-handle {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .channel-arrow {
+      margin-left: auto;
+      color: var(--muted);
+      font-size: 0.9rem;
+      align-self: center;
+      transition: color 0.2s, transform 0.2s;
+    }
+    .contact-channel:hover .channel-arrow {
+      color: var(--accent);
+      transform: translateX(3px);
+    }
+
+    /* ========================
+       AVAILABILITY BADGE
+    ======================== */
+    .availability {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border: 1px solid rgba(232,255,71,0.25);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+    }
+    .avail-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* ========================
+       FOOTER
+    ======================== -->
+    ======================== */
+    footer {
+      padding: 60px 40px 40px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+    .footer-logo span { color: var(--accent); }
+    .social-links {
+      display: flex;
+      gap: 20px;
+    }
+    .social-links a {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .social-links a:hover { color: var(--accent); }
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* ========================
+       ANIMATIONS
+    ======================== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ========================
+       RESPONSIVE
+    ======================== */
+    @media (max-width: 860px) {
+      .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        padding: 40px 20px 80px;
+      }
+      /* Sidebar comes first on mobile */
+      .contact-sidebar { order: -1; }
+    }
+    @media (max-width: 640px) {
+      nav { padding: 0 20px; }
+      .contact-hero { padding: 48px 20px 0; }
+      footer { padding: 40px 20px 30px; flex-direction: column; align-items: flex-start; }
+      .nav-links { gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ======================== NAVBAR ======================== -->
+  <nav>
+    <a href="index.html" class="nav-logo">Tom<span>D.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page">
+
+    <!-- ======================== HERO ======================== -->
+    <div class="contact-hero">
+      <div class="contact-hero-bg"></div>
+      <div class="contact-hero-content">
+        <p class="section-label">Contact</p>
+        <h1 class="contact-title">Let's work<br><span class="accent">together.</span></h1>
+        <p class="contact-desc">
+          Got a project in mind? A commission, a collab, or just a question?
+          Drop me a message and I'll get back to you as soon as possible.
+        </p>
+      </div>
+    </div>
+
+    <!-- ======================== MAIN LAYOUT ======================== -->
+    <div class="contact-layout">
+
+      <!-- ———— FORM ———— -->
+      <div class="contact-form-wrap">
+        <p class="form-block-title">Send a message</p>
+
+        <!--
+          ┌──────────────────────────────────────────────────────────┐
+          │  INTÉGRATION FORMULAIRE EXTERNE                          │
+          │                                                          │
+          │  Option A — Formspree (gratuit, aucune inscription)      │
+          │    1. Va sur https://formspree.io                        │
+          │    2. Crée un formulaire et copie l'ID                   │
+          │    3. Remplace "YOUR_FORM_ID" par ton ID                 │
+          │       dans la constante FORM_ENDPOINT ci-dessous         │
+          │                                                          │
+          │  Option B — EmailJS                                      │
+          │    Remplace le bloc <script> en bas de page              │
+          │    par ta config EmailJS et adapte handleSubmit()        │
+          │                                                          │
+          │  Le formulaire utilise fetch() pour soumettre            │
+          │  sans recharger la page.                                 │
+          └──────────────────────────────────────────────────────────┘
+        -->
+
+        <div class="form-group">
+          <label class="form-label" for="name">Name</label>
+          <input class="form-input" type="text" id="name" name="name" placeholder="Your name" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="email">Email</label>
+          <input class="form-input" type="email" id="email" name="email" placeholder="your@email.com" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="subject">Subject</label>
+          <input class="form-input" type="text" id="subject" name="subject" placeholder="Commission, Collab, Question…" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="message">Message</label>
+          <textarea class="form-textarea" id="message" name="message" placeholder="Tell me about your project…" required></textarea>
+        </div>
+
+        <button class="btn btn-primary" id="submit-btn" type="button" onclick="handleSubmit()">
+          Send message ✦
+        </button>
+
+        <div class="form-status" id="form-status"></div>
+
+        <div class="divider-note">or reach me directly</div>
+      </div>
+
+      <!-- ———— SIDEBAR ———— -->
+      <div class="contact-sidebar">
+
+        <div class="availability">
+          <span class="avail-dot"></span>
+          Available for commissions
+        </div>
+
+        <a class="contact-channel" href="https://x.com/TomD_Graph" target="_blank" rel="noopener">
+          <div class="channel-icon">𝕏</div>
+          <div class="channel-body">
+            <div class="channel-name">Twitter / X</div>
+            <div class="channel-handle">@TomD_Graph</div>
+          </div>
+          <span class="channel-arrow">→</span>
+        </a>
+
+        <a class="contact-channel" href="https://discord.gg/fqp3uNJwzV" target="_blank" rel="noopener">
+          <div class="channel-icon">
+            <!-- Discord icon SVG -->
+            <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15.25 1.19A14.9 14.9 0 0 0 11.53 0c-.17.31-.37.73-.51 1.06a13.8 13.8 0 0 0-4.03 0A11.6 11.6 0 0 0 6.47 0 14.94 14.94 0 0 0 2.74 1.2 15.76 15.76 0 0 0 .05 11.6a15.1 15.1 0 0 0 4.58 2.32c.37-.5.7-1.04.98-1.6a9.72 9.72 0 0 1-1.54-.74l.37-.29a10.78 10.78 0 0 0 9.12 0l.38.29c-.49.29-1 .54-1.55.74.28.57.61 1.1.98 1.6a15.05 15.05 0 0 0 4.59-2.31 15.73 15.73 0 0 0-2.76-10.41ZM6.09 9.5c-.87 0-1.59-.8-1.59-1.78s.7-1.78 1.59-1.78c.88 0 1.6.79 1.59 1.78 0 .98-.71 1.78-1.59 1.78Zm5.82 0c-.88 0-1.59-.8-1.59-1.78s.7-1.78 1.59-1.78c.88 0 1.6.79 1.59 1.78 0 .98-.71 1.78-1.59 1.78Z" fill="#e8ff47"/>
+            </svg>
+          </div>
+          <div class="channel-body">
+            <div class="channel-name">Discord</div>
+            <div class="channel-handle">Join the server</div>
+          </div>
+          <span class="channel-arrow">→</span>
+        </a>
+
+        <a class="contact-channel" href="https://ko-fi.com/tomgraph" target="_blank" rel="noopener">
+          <div class="channel-icon">☕</div>
+          <div class="channel-body">
+            <div class="channel-name">Ko-fi</div>
+            <div class="channel-handle">ko-fi.com/tomgraph</div>
+          </div>
+          <span class="channel-arrow">→</span>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- ======================== FOOTER ======================== -->
+    <footer>
+      <a href="index.html" class="footer-logo">Tom<span>D.</span></a>
+      <div class="social-links">
+        <a href="https://x.com/TomD_Graph" target="_blank" rel="noopener">𝕏 Twitter</a>
+        <a href="https://discord.gg/fqp3uNJwzV" target="_blank" rel="noopener">Discord</a>
+        <a href="https://ko-fi.com/tomgraph" target="_blank" rel="noopener">Ko-fi</a>
+      </div>
+      <p class="footer-copy">© 2025 Tom D. — All rights reserved.</p>
+    </footer>
+
+  </div><!-- /page -->
+
+  <!-- ========================
+       FORM SCRIPT
+       ↓ Remplace YOUR_FORM_ID par ton ID Formspree
+       ex : https://formspree.io/f/abcd1234
+  ======================== -->
+  <script>
+    const FORM_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+
+    async function handleSubmit() {
+      const btn    = document.getElementById("submit-btn");
+      const status = document.getElementById("form-status");
+
+      const name    = document.getElementById("name").value.trim();
+      const email   = document.getElementById("email").value.trim();
+      const subject = document.getElementById("subject").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      // Basic validation
+      if (!name || !email || !message) {
+        status.className = "form-status error";
+        status.textContent = "Please fill in all required fields.";
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = "Sending…";
+      status.className = "form-status";
+      status.textContent = "";
+
+      try {
+        const res = await fetch(FORM_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify({ name, email, subject, message })
+        });
+
+        if (res.ok) {
+          status.className = "form-status success";
+          status.textContent = "Message sent! I'll get back to you soon. ✦";
+          document.getElementById("name").value    = "";
+          document.getElementById("email").value   = "";
+          document.getElementById("subject").value = "";
+          document.getElementById("message").value = "";
+          btn.textContent = "Send message ✦";
+          btn.disabled = false;
+        } else {
+          throw new Error("Server error");
+        }
+      } catch (err) {
+        status.className = "form-status error";
+        status.textContent = "Something went wrong. Try reaching me on Discord or Twitter instead.";
+        btn.textContent = "Send message ✦";
+        btn.disabled = false;
+      }
+    }
+  </script>
+
+</body>
+</html>
